@@ -8,17 +8,16 @@
 #### 📚 Product & Resources - [Here](https://github.com/kby-ai/Product)
 #### 🛟 Help Center - [Here](https://docs.kby-ai.com)
 #### 💼 KYC Verification Demo - [Here](https://github.com/kby-ai/KYC-Verification-Demo-Android)
-#### 🙋‍♀️ Docker Hub - [Here](https://hub.docker.com/u/kbyai)
+#### 🙋‍♀️ Docker Hub - [Here](https://hub.docker.com/r/kbyai/license-plate-recognition)
 
 # Automatic-License-Plate-Recognition
 
 ## Overview
 
-We implemented `ANPR/ALPR(Automatic Number/License Plate Recognition)` engine with unmatched accuracy and precision by applying `SOTA(State-of-the-art)` deep learning techniques in this repository. 
-This repository demonstrates `ANPR/ALPR` model inference in `Linux` server.
-
-KBY-AI's `LPR` solutions utilizes artificial intelligence and machine learning to greatly surpass legacy solutions. Now, in real-time, users can receive a vehicle's plate number.
-
+This repository demonstrates  `ANPR/ALPR(Automatic Number/License Plate Recognition)` SDK with unmatched accuracy and precision by applying `SOTA(State-of-the-art)` deep learning techniques. </br>
+`KBY-AI`'s `LPR` solutions utilizes artificial intelligence and machine learning to greatly surpass legacy solutions. Now, in real-time, users can receive a vehicle's plate number through `API`.
+> We can customize the `SDK` to align with customer's specific requirements.
+> 
 The `ALPR` system consists of the following steps:
 - Vehicle image capture
 - Preprocessing
@@ -29,35 +28,147 @@ The `ALPR` system consists of the following steps:
 
 The `ALPR` system works in these strides, the initial step is the location of the vehicle and capturing a vehicle image of front or back perspective of the vehicle, the second step is the localization of Number Plate and then extraction of vehicle Number Plate is an image. The final stride uses image segmentation strategy, for the segmentation a few techniques neural network, mathematical morphology, color analysis and histogram analysis. Segmentation is for individual character recognition. Optical Character Recognition (OCR) is one of the strategies to perceive the every character with the assistance of database stored for separate alphanumeric character.
 
-## Online Test Demo
+
+### ◾License Plate Recognition SDK Product List
+  | No.      | Repository | SDK Details | Status |
+  |------------------|------------------|------------------|------------------|
+  | ➡️        | <b>[LPR - Linux](https://github.com/kby-ai/Automatic-License-Plate-Recognition-Docker)</b>    | <b>License Plate Recognition Linux SDK</b> | <b>Available</b> |
+  | 2        | [LPR - Docker](https://hub.docker.com/r/kbyai/license-plate-recognition)    | License Plate Recognition Docker Image | Available |
+  | 3        | [LPR - Flutter](https://github.com/kby-ai/Automatic-License-Plate-Recognition-Flutter)    | License Plate Recognition Flutter SDK | Available |
+  | 4        | LPR - Android    | License Plate Recognition Android SDK | Developing |
+  | 5        | LPR - iOS    | License Plate Recognition iOS SDK | Developing |
+
+> To get more products, please visit products [here](https://github.com/kby-ai):<br/>
+
+## Try the API
+### Online Demo
 To try `KBY-AI` `ALPR` online, please visit [here](https://web.kby-ai.com/)
+> Please select tab 'ALPR/ANPR` for this `SDK`
 
-## Model Weights
+![image](https://github.com/user-attachments/assets/4e660694-f5bf-4f00-be2b-822c093e2d94)
 
-To run this repository, model weights are needed.
+### Postman
+  The `API` can be evaluated through `Postman` tool. Here are the endpoints for testing:
+  - Test with an image file: Send a `POST` request to `http://89.116.159.229:8084/compare_palmprint`.
+  - Test with a `base64-encoded` image: Send a `POST` request to `http://89.116.159.229:8084/compare_palmprint_base64`.
+    
+    ![image](https://github.com/user-attachments/assets/4c5a528d-572c-46fe-b2de-6f387929b181)
 
-- To request model weights, please contact us:</br>
+## SDK License
+This project demonstrates `KBY-AI`'s `Palmprint Recognition Server SDK`, which requires a license per machine.</br>
+- The code below shows how to use the license: https://github.com/kby-ai/Palmprint-Recognition-Docker/blob/290f714ca49496164f0586f277b6104bfd164ad7/app.py#L21-L31
+- To request the license, please provide us with the `machine code` obtained from the `getMachineCode` function.</br>
+#### Please contact us:</br>
 🧙`Email:` contact@kby-ai.com</br>
 🧙`Telegram:` [@kbyai](https://t.me/kbyai)</br>
 🧙`WhatsApp:` [+19092802609](https://wa.me/+19092802609)</br>
 🧙`Skype:` [live:.cid.66e2522354b1049b](https://join.skype.com/invite/OffY2r1NUFev)</br>
 🧙`Facebook:` https://www.facebook.com/KBYAI</br>
 
-## About Repository
+## How to run
 
-### 1. Set up
-1. Clone this repository to local or server machine.
+### 1. System Requirements
+  - `CPU`: 2 cores or more (Recommended: 2 cores)
+  - `RAM`: 4 GB or more (Recommended: 8 GB)
+  - `HDD`: 4 GB or more (Recommended: 8 GB)
+  - `OS`: `Ubuntu 20.04` or later
+  - Dependency: `OpenVINO™ Runtime` (Version: 2022.3)
 
-2. Install `python 3.9` or later version
+### 2. Setup and Test
+  - Clone the project:
+    ```bash
+    git clone https://github.com/kby-ai/Automatic-License-Plate-Recognition-Docker.git
+    ```
+    ```bash
+    cd Automatic-License-Plate-Recognition-Docker
+    ```
+  - Build the `Docker` image:
+    ```bash
+    sudo docker build --pull --rm -f Dockerfile -t kby-ai-alpr:latest .
+    ```
+  - Run the `Docker` container:
+    ```bash
+    sudo docker run -v ./license.txt:/home/openvino/kby-ai-alpr/license.txt -p 8081:8080 -p 9001:9000 kby-ai-alpr
+    ```
+  - Send us the `machine code` and then we will give you a license key to make the `SDK` activate.
+  
+    After that, update the `license.txt` file by overwriting the `license key` that you received. Then, run the `Docker` container again.
 
-3. Install dependencies using `pip` command
-```bash
-pip install tensorflow
-```
-4. Run inference
-```bash
-python main.py
-```
+    ![image](https://github.com/user-attachments/assets/08865793-ee4e-4ede-aaf1-8fa70a8d8faa)
+    
+    ![image](https://github.com/user-attachments/assets/194b8666-8638-4ffc-8ee3-63f2ba491763)
+
+  - Here are the endpoints to test the `API` through `Postman`:
+
+    Test with an image file: Send a `POST` request to `http://{xx.xx.xx.xx}:8081/alpr`.
+    
+    Test with a `base64-encoded` image: Send a `POST` request to `http://{xx.xx.xx.xx}:8081/alpr_base64`.
+
+### 3. Execute the Gradio demo
+  - Setup `Gradio`
+    Ensure that the necessary dependencies are installed. </br>
+    `Gradio` requires `Python 3.6` or above. </br>
+    Install `Gradio` using `pip` by running the following command:
+    ```bash
+    pip install gradio
+    ```
+  - Run the demo with the following command:
+    ```bash
+    cd gradio
+    python demo.py
+    ```
+  - `SDK` can be tested on the following URL: `http://127.0.0.1:9000`
+
+## About SDK
+
+### 1. Initializing the SDK
+
+- Import SDK python script
+  ```python
+  from alprsdk import initSDK, getLicensePlate, getMachineCode, freeLicenseResults, setActivation
+  ```
+- Obtain the `machine code` to activate and request a license
+  ```python
+  machineCode = getMachineCode()
+  print("\nmachineCode: ", machineCode.decode('utf-8'))
+  ```
+- Activate the `SDK` using the license key
+  ```python
+  ret = setActivation(license.encode('utf-8'))
+  print("\nactivation: ", ret)
+  ```
+- Initializing `SDK`
+  ```python
+  ret = initSDK()
+  ```
+  Once `ret` value is zero, SDK can get work started
+
+### 2. APIs
+  - Hand Detection
+  
+    The `SDK` provides a single API for detecting hands, determining `hand landmark`.</br>
+    The function can be used as follows:
+    ```python
+    hand_type, x1, y1, x2, y2, detect_state = encoder.detect_using_bytes(img)
+    roi = mat_to_bytes(get_roi(img, hand_type, x1, y1, x2, y2))
+    ```
+    * `hand_type`: it indicates hand type value, `0` value: `left hand`, `1` value: `right hand`.
+    * `x1`, `y1`, `x2`, `y2`: hand landmark points to get `ROI` image.
+    * `roi`: hand `ROI(Region Of Interest)` image to get palm feature.
+  - Create Feature
+    `encode_using_bytes` function returns palmprint feature against `ROI` data.</br>
+    ```python    
+    palmprint = encoder.encode_using_bytes(roi)
+    ```
+    * `roi`: hand `ROI(Region Of Interest)` image to get palm feature.
+    * `palmprint`: palmprint feature calculated from hand `ROI` data.    
+  - Similiarity
+    The `compare_to` function takes two palmprint `feature`s as a parameter and returns `score` value to determine whether 2 input hands are from the same or different.
+    ```python
+    one_palmprint_code = encoder.encode_using_bytes(roi1)
+    another_palmprint_code = encoder.encode_using_bytes(roi2)
+    score = one_palmprint_code.compare_to(another_palmprint_code)
+    ```
 ### 2. Performance Video
 
 You can visit our YouTube video for `ANPR/ALPR` model's performance [here](https://www.youtube.com/watch?v=sLBYxgMdXlA) to see how well our demo app works.</br></br>
