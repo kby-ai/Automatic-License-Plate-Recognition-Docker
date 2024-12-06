@@ -110,7 +110,8 @@ def alpr_base64():
         imageBase64 = content['base64']
         image_data = base64.b64decode(imageBase64) 
         np_array = np.frombuffer(image_data, np.uint8)
-        image = cv2.imdecode(np_array, cv2.IMREAD_COLOR)   
+        image = cv2.imdecode(np_array, cv2.IMREAD_COLOR)  
+        image = cv2.resize(image, (1024, 640))
     except:
         result = "Failed to open file1"
         response = jsonify({"result": result, "plate number": license, "coordinate": box})
