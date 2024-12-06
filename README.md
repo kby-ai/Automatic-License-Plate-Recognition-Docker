@@ -49,14 +49,14 @@ To try `KBY-AI` `ALPR` online, please visit [here](https://web.kby-ai.com/)
 
 ### Postman
   The `API` can be evaluated through `Postman` tool. Here are the endpoints for testing:
-  - Test with an image file: Send a `POST` request to `http://89.116.159.229:8084/compare_palmprint`.
-  - Test with a `base64-encoded` image: Send a `POST` request to `http://89.116.159.229:8084/compare_palmprint_base64`.
+  - Test with an image file: Send a `POST` request to `http://89.116.159.229:8085/alpr`.
+  - Test with a `base64-encoded` image: Send a `POST` request to `http://89.116.159.229:8085/alpr_base64`.
     
     ![image](https://github.com/user-attachments/assets/4c5a528d-572c-46fe-b2de-6f387929b181)
 
 ## SDK License
 This project demonstrates `KBY-AI`'s `Palmprint Recognition Server SDK`, which requires a license per machine.</br>
-- The code below shows how to use the license: https://github.com/kby-ai/Palmprint-Recognition-Docker/blob/290f714ca49496164f0586f277b6104bfd164ad7/app.py#L21-L31
+- The code below shows how to use the license: https://github.com/kby-ai/Automatic-License-Plate-Recognition-Docker/blob/06a13d653646b9b123e5d164c18af9ae13351d53/app.py#L17-L28
 - To request the license, please provide us with the `machine code` obtained from the `getMachineCode` function.</br>
 #### Please contact us:</br>
 🧙`Email:` contact@kby-ai.com</br>
@@ -144,32 +144,38 @@ This project demonstrates `KBY-AI`'s `Palmprint Recognition Server SDK`, which r
   Once `ret` value is zero, SDK can get work started
 
 ### 2. APIs
-  - Hand Detection
+  - Getting License Number & Coordinate
   
-    The `SDK` provides a single API for detecting hands, determining `hand landmark`.</br>
+    The `SDK` provides a single API for getting license plate number and its coordinate(x, y, width, height).</br>
     The function can be used as follows:
     ```python
-    hand_type, x1, y1, x2, y2, detect_state = encoder.detect_using_bytes(img)
-    roi = mat_to_bytes(get_roi(img, hand_type, x1, y1, x2, y2))
+    recog_array = (c_int * 1024)()  # Assuming a maximum of 256 rectangles
+    license_plate_ptr = POINTER(c_char_p)()
+    cnt = getLicensePlate(img_byte, len(img_byte), byref(license_plate_ptr), recog_array)
     ```
-    * `hand_type`: it indicates hand type value, `0` value: `left hand`, `1` value: `right hand`.
-    * `x1`, `y1`, `x2`, `y2`: hand landmark points to get `ROI` image.
-    * `roi`: hand `ROI(Region Of Interest)` image to get palm feature.
-  - Create Feature
-    `encode_using_bytes` function returns palmprint feature against `ROI` data.</br>
+    * `recog_array`: coordinate(`x`, `y`, `width`, `height`).
+    * `img_byte`: image data in binary format.
+    * `license_plate_ptr`: pointer to variable with license plate number.
+  - Analyzing the result from `SDK`
+    Result values from `SDK` inference can be analyzed as follows.</br>
     ```python    
-    palmprint = encoder.encode_using_bytes(roi)
+    license_plate = [license_plate_ptr[i].decode('utf-8') for i in range(cnt)]
+    rectangles = [
+    (recog_array[i * 4], recog_array[i * 4 + 1], recog_array[i * 4 + 2], recog_array[i * 4 + 3])
+    for i in range(cnt)]
+
+    freeLicenseResults(license_plate_ptr, cnt)
+    
+    print("number: ", cnt, rectangles, license_plate)
     ```
-    * `roi`: hand `ROI(Region Of Interest)` image to get palm feature.
-    * `palmprint`: palmprint feature calculated from hand `ROI` data.    
-  - Similiarity
-    The `compare_to` function takes two palmprint `feature`s as a parameter and returns `score` value to determine whether 2 input hands are from the same or different.
+    * `cnt`: the number of detected license plate.
+    * `rectangles`: list of `coordinate`.
+    * `license plate`: list of `license number`.    
+  - Free Memory
     ```python
-    one_palmprint_code = encoder.encode_using_bytes(roi1)
-    another_palmprint_code = encoder.encode_using_bytes(roi2)
-    score = one_palmprint_code.compare_to(another_palmprint_code)
+    freeLicenseResults(license_plate_ptr, cnt)
     ```
-### 2. Performance Video
+## Performance Video
 
 You can visit our YouTube video for `ANPR/ALPR` model's performance [here](https://www.youtube.com/watch?v=sLBYxgMdXlA) to see how well our demo app works.</br></br>
 [![ANPR/ALPR Demo](https://img.youtube.com/vi/sLBYxgMdXlA/0.jpg)](https://www.youtube.com/watch?v=sLBYxgMdXlA)</br>
