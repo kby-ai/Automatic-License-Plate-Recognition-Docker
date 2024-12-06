@@ -108,10 +108,10 @@ This project demonstrates `KBY-AI`'s `Palmprint Recognition Server SDK`, which r
 ### 3. Execute the Gradio demo
   - Setup `Gradio`
     Ensure that the necessary dependencies are installed. </br>
-    `Gradio` requires `Python 3.6` or above. </br>
+    `Gradio` requires `Python 3.7` or above. </br>
     Install `Gradio` using `pip` by running the following command:
     ```bash
-    pip install gradio
+    pip install -r requirements.txt
     ```
   - Run the demo with the following command:
     ```bash
