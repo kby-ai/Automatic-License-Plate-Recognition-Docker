@@ -93,9 +93,9 @@ This project demonstrates `KBY-AI`'s `Palmprint Recognition Server SDK`, which r
   
     After that, update the `license.txt` file by overwriting the `license key` that you received. Then, run the `Docker` container again.
 
-    ![image](https://github.com/user-attachments/assets/08865793-ee4e-4ede-aaf1-8fa70a8d8faa)
+    ![image](https://github.com/user-attachments/assets/e718a509-85da-469f-b491-27b99063d0ec)
     
-    ![image](https://github.com/user-attachments/assets/194b8666-8638-4ffc-8ee3-63f2ba491763)
+    ![image](https://github.com/user-attachments/assets/cb2806e0-93be-4b0a-be9f-713559b89d35)
 
   - Here are the endpoints to test the `API` through `Postman`:
 
