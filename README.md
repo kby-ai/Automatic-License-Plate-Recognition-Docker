@@ -9,7 +9,10 @@
 #### 🛟 Help Center - [Here](https://docs.kby-ai.com)
 #### 💼 KYC Verification Demo - [Here](https://github.com/kby-ai/KYC-Verification-Demo-Android)
 #### 🙋‍♀️ Docker Hub - [Here](https://hub.docker.com/r/kbyai/license-plate-recognition)
-
+```bash
+sudo docker pull kbyai/license-plate-recognition:latest
+sudo docker run -v ./license.txt:/home/openvino/kby-ai-alpr/license.txt -p 8081:8080 -p 9001:9000 kbyai/license-plate-recognition:latest
+```
 # Automatic-License-Plate-Recognition
 
 ## Overview
@@ -41,11 +44,10 @@ The `ALPR` system works in these strides, the initial step is the location of th
 > To get more products, please visit products [here](https://github.com/kby-ai):<br/>
 
 ## Try the API
-### Online Demo
+## Online Demo
 To try `KBY-AI` `ALPR` online, please visit [here](https://web.kby-ai.com/)
 > Please select tab 'ALPR/ANPR` for this `SDK`
-
-
+  ![image](https://github.com/user-attachments/assets/77c9be85-16a8-4771-8c0e-c35bf01a506b)
 
 ### Postman
   The `API` can be evaluated through `Postman` tool. Here are the endpoints for testing:
