@@ -53,7 +53,7 @@ def alpr():
     
     try:
         image = cv2.imdecode(np.frombuffer(file.read(), np.uint8), cv2.IMREAD_COLOR)
-
+        image = cv2.resize(image, (1024, 640))
     except:
         result = "Failed to open file1"
         response = jsonify({"result": result, "plate number": license, "coordinate": box})
