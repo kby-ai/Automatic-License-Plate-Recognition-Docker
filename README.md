@@ -54,7 +54,7 @@ The `ALPR` system works in these strides, the initial step is the location of th
 ## Online Demo
 To try `KBY-AI` `ALPR` online, please visit [here](https://web.kby-ai.com/)
 > Please select tab 'ALPR/ANPR` for this `SDK`
-  ![image](https://github.com/user-attachments/assets/77c9be85-16a8-4771-8c0e-c35bf01a506b)
+  ![image](https://github.com/user-attachments/assets/3e63c286-f3d6-4bf4-80b7-22139eaec003)
 
 ### Postman
   The `API` can be evaluated through `Postman` tool. Here are the endpoints for testing:
