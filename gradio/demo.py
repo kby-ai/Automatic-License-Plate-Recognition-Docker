@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 
 alpr_count = 0
-def plot_one_box(x, img, color=None, label=None, line_thickness=3):
+def plot_one_box(x, img, color=None, label=None, score=None, line_thickness=3):
 	# Plots one bounding box on image img
     tl = line_thickness or round(0.002 * (img.shape[0] + img.shape[1]) / 2) + 1  # line/font thickness
     color = color
@@ -18,6 +18,13 @@ def plot_one_box(x, img, color=None, label=None, line_thickness=3):
         c2 = c1[0] + t_size[0], c1[1] - t_size[1] - 3
         cv2.rectangle(img, c1, c2, color, -1, cv2.LINE_AA)  # filled
         cv2.putText(img, label, (c1[0], c1[1] - 2), 0, tl / 3, [0, 0, 0], thickness=tf, lineType=cv2.LINE_AA)
+
+	pro = f"{score:.3f}"
+        t_size = cv2.getTextSize(pro, 0, fontScale=tl / 3, thickness=tf)[0]
+        c1 = c2
+        c2 = c1[0] + t_size[0], c1[1] + t_size[1] + 3
+        cv2.rectangle(img, c1, c2, [0, 255, 255], -1, cv2.LINE_AA)  # filled
+        cv2.putText(img, pro, (c1[0], c2[1] - 2), 0, tl / 3, [0, 0, 0], thickness=tf, lineType=cv2.LINE_AA)
     return img
     
 def alpr(frame):
@@ -34,6 +41,7 @@ def alpr(frame):
     result = r.json().get('result')
     plate_number = r.json().get('plate number')
     box = r.json().get('coordinate')
+    pro = r.json().get('score')
     print("\n number: ", plate_number)
     print("\n coordinate: ", box)
     try:
@@ -44,7 +52,7 @@ def alpr(frame):
         image = cv2.resize(image, (1024, 640))
         for alpr in plate_number:
             # print(plate_number)
-            image = plot_one_box(box[alpr], image, label=plate_number[alpr], color=[0, 255, 0], line_thickness=1)
+            image = plot_one_box(box[alpr], image, label=plate_number[alpr], score=pro[alpr], color=[0, 255, 0], line_thickness=1)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         
         alpr_output = image.copy()
