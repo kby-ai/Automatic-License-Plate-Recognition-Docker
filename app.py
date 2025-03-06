@@ -48,6 +48,7 @@ def alpr():
     result = "None"
     license = {}
     box = {}
+    pro = {}
     
     file = request.files['file']
     
@@ -56,7 +57,7 @@ def alpr():
         image = cv2.resize(image, (1024, 640))
     except:
         result = "Failed to open file1"
-        response = jsonify({"result": result, "plate number": license, "coordinate": box})
+        response = jsonify({"result": result, "plate number": license, "coordinate": box, "score": pro})
 
         response.status_code = 200
         response.headers["Content-Type"] = "application/json; charset=utf-8"
@@ -66,21 +67,23 @@ def alpr():
     img_byte = mat_to_bytes(image)
     
     recog_array = (c_int * 1024)()  # Assuming a maximum of 256 rectangles
+    score_array = (c_float * 1024)()  # Assuming a maximum of 256 rectangles
     
     license_plate_ptr = POINTER(c_char_p)()
-    cnt = getLicensePlate(img_byte, len(img_byte), byref(license_plate_ptr), recog_array)
+    cnt = getLicensePlate(img_byte, len(img_byte), byref(license_plate_ptr), recog_array, score_array)
 
     license_plate = [license_plate_ptr[i].decode('utf-8') for i in range(cnt)]
     rectangles = [
     (recog_array[i * 4], recog_array[i * 4 + 1], recog_array[i * 4 + 2], recog_array[i * 4 + 3])
     for i in range(cnt)]
+    scores = [score_array[i] for i in range(cnt)]
 
     freeLicenseResults(license_plate_ptr, cnt)
     
     # print("number: ", cnt, rectangles, license_plate)
     if cnt == 0:
         result = "Nothing Detected !"
-        response = jsonify({"result": result, "plate number": license, "coordinate": box})
+        response = jsonify({"result": result, "plate number": license, "coordinate": box, "score": pro})
 
         response.status_code = 200
         response.headers["Content-Type"] = "application/json; charset=utf-8"
@@ -90,8 +93,9 @@ def alpr():
     for i in range(cnt):
         license[f"vehicle {i + 1}"] = license_plate[i]
         box[f"vehicle {i + 1}"] = rectangles[i]
+        pro[f"vehicle {i + 1}"] = scores[i]
     
-    response = jsonify({"result": result, "plate number": license, "coordinate": box})
+    response = jsonify({"result": result, "plate number": license, "coordinate": box, "score": pro})
 
     response.status_code = 200
     response.headers["Content-Type"] = "application/json; charset=utf-8"
@@ -103,6 +107,7 @@ def alpr_base64():
     result = "None"
     license = {}
     box = {}
+    pro = {}
     
     content = request.get_json()
 
@@ -114,7 +119,7 @@ def alpr_base64():
         image = cv2.resize(image, (1024, 640))
     except:
         result = "Failed to open file1"
-        response = jsonify({"result": result, "plate number": license, "coordinate": box})
+        response = jsonify({"result": result, "plate number": license, "coordinate": box, "score": pro})
 
         response.status_code = 200
         response.headers["Content-Type"] = "application/json; charset=utf-8"
@@ -124,21 +129,23 @@ def alpr_base64():
     img_byte = mat_to_bytes(image)
     
     recog_array = (c_int * 1024)()  # Assuming a maximum of 256 rectangles
+    score_array = (c_float * 1024)()  # Assuming a maximum of 256 rectangles
     
     license_plate_ptr = POINTER(c_char_p)()
-    cnt = getLicensePlate(img_byte, len(img_byte), byref(license_plate_ptr), recog_array)
+    cnt = getLicensePlate(img_byte, len(img_byte), byref(license_plate_ptr), recog_array, score_array)
 
     license_plate = [license_plate_ptr[i].decode('utf-8') for i in range(cnt)]
     rectangles = [
     (recog_array[i * 4], recog_array[i * 4 + 1], recog_array[i * 4 + 2], recog_array[i * 4 + 3])
     for i in range(cnt)]
+    scores = [score_array[i] for i in range(cnt)]
 
     freeLicenseResults(license_plate_ptr, cnt)
     
     # print("number: ", cnt, rectangles, license_plate)
     if cnt == 0:
         result = "Nothing Detected !"
-        response = jsonify({"result": result, "plate number": license, "coordinate": box})
+        response = jsonify({"result": result, "plate number": license, "coordinate": box, "score": pro})
 
         response.status_code = 200
         response.headers["Content-Type"] = "application/json; charset=utf-8"
@@ -148,8 +155,9 @@ def alpr_base64():
     for i in range(cnt):
         license[f"vehicle {i + 1}"] = license_plate[i]
         box[f"vehicle {i + 1}"] = rectangles[i]
+        pro[f"vehicle {i + 1}"] = scores[i]
     
-    response = jsonify({"result": result, "plate number": license, "coordinate": box})
+    response = jsonify({"result": result, "plate number": license, "coordinate": box, "score": pro})
 
     response.status_code = 200
     response.headers["Content-Type"] = "application/json; charset=utf-8"
