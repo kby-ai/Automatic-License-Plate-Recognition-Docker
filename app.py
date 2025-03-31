@@ -80,7 +80,7 @@ def alpr():
 
     freeLicenseResults(license_plate_ptr, cnt)
     
-    # print("number: ", cnt, rectangles, license_plate)
+    # print("number: ", cnt, rectangles, license_plate, scores)
     if cnt == 0:
         result = "Nothing Detected !"
         response = jsonify({"result": result, "plate number": license, "coordinate": box, "score": pro})
@@ -142,7 +142,7 @@ def alpr_base64():
 
     freeLicenseResults(license_plate_ptr, cnt)
     
-    # print("number: ", cnt, rectangles, license_plate)
+    # print("number: ", cnt, rectangles, license_plate, scores)
     if cnt == 0:
         result = "Nothing Detected !"
         response = jsonify({"result": result, "plate number": license, "coordinate": box, "score": pro})
