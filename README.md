@@ -94,15 +94,17 @@ This project demonstrates `KBY-AI`'s `License Plate Recognition Server SDK`, whi
     ```bash
     sudo docker build --pull --rm -f Dockerfile -t kby-ai-alpr:latest .
     ```
+  - Read `machine code`
+    ```
+    sudo docker run -e LICENSE="xxxxx" kby-ai-alpr:latest
+    ```
+  - Send us `machine code` obtained.
+    ![image](https://github.com/user-attachments/assets/73861421-4ce8-4d01-a5df-73c14eb0626f)
+  - Update the `license.txt` file by overwriting the `license key` that you received from `KBY-AI` team.
   - Run the `Docker` container:
     ```bash
     sudo docker run -v ./license.txt:/home/openvino/kby-ai-alpr/license.txt -p 8081:8080 -p 9001:9000 kby-ai-alpr
-    ```
-  - Send us the `machine code` and then we will give you a license key to make the `SDK` activate.
-  
-After that, update the `license.txt` file by overwriting the `license key` that you received. Then, run the `Docker` container again.
-   ![image](https://github.com/user-attachments/assets/73861421-4ce8-4d01-a5df-73c14eb0626f)
-    
+    ```    
    ![image](https://github.com/user-attachments/assets/cb2806e0-93be-4b0a-be9f-713559b89d35)
 
   - Here are the endpoints to test the `API` through `Postman`:
