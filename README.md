@@ -101,10 +101,9 @@ This project demonstrates `KBY-AI`'s `License Plate Recognition Server SDK`, whi
   - Send us the `machine code` and then we will give you a license key to make the `SDK` activate.
   
 After that, update the `license.txt` file by overwriting the `license key` that you received. Then, run the `Docker` container again.
-
-    ![image](https://github.com/user-attachments/assets/73861421-4ce8-4d01-a5df-73c14eb0626f)
+   ![image](https://github.com/user-attachments/assets/73861421-4ce8-4d01-a5df-73c14eb0626f)
     
-    ![image](https://github.com/user-attachments/assets/cb2806e0-93be-4b0a-be9f-713559b89d35)
+   ![image](https://github.com/user-attachments/assets/cb2806e0-93be-4b0a-be9f-713559b89d35)
 
   - Here are the endpoints to test the `API` through `Postman`:
 
