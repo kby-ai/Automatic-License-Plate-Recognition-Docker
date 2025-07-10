@@ -23,7 +23,7 @@ sudo docker run -v ./license.txt:/home/openvino/kby-ai-alpr/license.txt -p 8081:
 
 ## Overview
 
-This repository demonstrates  `ANPR/ALPR(Automatic Number/License Plate Recognition)` SDK with unmatched accuracy and precision by applying `SOTA(State-of-the-art)` deep learning techniques. </br>
+This repository demonstrates  `ANPR/ALPR(Automatic Number/License Plate Recognition)` server SDK with unmatched accuracy and precision by applying `SOTA(State-of-the-art)` deep learning techniques. </br>
 `KBY-AI`'s `LPR` solutions utilizes artificial intelligence and machine learning to greatly surpass legacy solutions. Now, in real-time, users can receive a vehicle's plate number through `API`.
 > We can customize the `SDK` to align with customer's specific requirements.
 > 
