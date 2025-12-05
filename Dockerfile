@@ -29,7 +29,9 @@ COPY ./alprsdk.py .
 COPY ./requirements.txt .
 COPY ./license.txt .
 COPY ./run.sh .
+COPY ./demo.py .
 COPY ./model ./model
+COPY ./alpr_examples ./alpr_examples
 
 # Install Python dependencies
 
