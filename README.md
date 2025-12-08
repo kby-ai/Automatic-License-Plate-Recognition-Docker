@@ -40,10 +40,14 @@ This repository demonstrates  `ANPR/ALPR(Automatic Number/License Plate Recognit
 > To get more products, please visit products [here](https://github.com/kby-ai):<br/>
 
 ## Try the API
-## Online Demo
+### Online Demo
 To try `KBY-AI` `ALPR` online, please visit [here](https://web.kby-ai.com/)
 > Please select tab 'ALPR/ANPR` for this `SDK`
   ![image](https://github.com/user-attachments/assets/3e63c286-f3d6-4bf4-80b7-22139eaec003)
+
+### Gradio Demo
+To test the `Gradio` demo from the Docker image, access it at [http://127.0.0.1:9001](http://127.0.0.1:9001) or [http://localhost:9001](http://localhost:9001).
+![image](https://github.com/user-attachments/assets/1acb8e19-4465-4e39-9529-9cd61cb04b8f)
 
 ### Postman
   The `API` can be evaluated through `Postman` tool. Here are the endpoints for testing:
