@@ -51,8 +51,8 @@ To test the `Gradio` demo from the Docker image, access it at [http://127.0.0.1:
 
 ### Postman
   The `API` can be evaluated through `Postman` tool. Here are the endpoints for testing:
-  - Test with an image file: Send a `POST` request to [http://127.0.0.1:9001/alpr](http://127.0.0.1:9001/alpr).
-  - Test with a `base64-encoded` image: Send a `POST` request to [http://127.0.0.1:9001/alpr_base64](http://127.0.0.1:9001/alpr_base64).
+  - Test with an image file: Send a `POST` request to [http://127.0.0.1:8081/alpr](http://127.0.0.1:8081/alpr).
+  - Test with a `base64-encoded` image: Send a `POST` request to [http://127.0.0.1:8081/alpr_base64](http://127.0.0.1:8081/alpr_base64).
   ![image](https://github.com/user-attachments/assets/ad162193-f01b-4b85-b291-24ad9523252d)
 
 ## SDK License
