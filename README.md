@@ -51,9 +51,9 @@ To test the `Gradio` demo from the Docker image, access it at [http://127.0.0.1:
 
 ### Postman
   The `API` can be evaluated through `Postman` tool. Here are the endpoints for testing:
-  - Test with an image file: Send a `POST` request to `http://89.116.159.229:8085/alpr`.
-  - Test with a `base64-encoded` image: Send a `POST` request to `http://89.116.159.229:8085/alpr_base64`.
-  ![image](https://github.com/user-attachments/assets/a434f9f7-9efb-4c66-a1ea-c728a8074458)
+  - Test with an image file: Send a `POST` request to [http://127.0.0.1:9001/alpr](http://127.0.0.1:9001/alpr).
+  - Test with a `base64-encoded` image: Send a `POST` request to [http://127.0.0.1:9001/alpr_base64](http://127.0.0.1:9001/alpr_base64).
+  ![image](https://github.com/user-attachments/assets/ad162193-f01b-4b85-b291-24ad9523252d)
 
 ## SDK License
 This project demonstrates `KBY-AI`'s `License Plate Recognition Server SDK`, which requires a license per machine.</br>
