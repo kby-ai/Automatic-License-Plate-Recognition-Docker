@@ -100,26 +100,9 @@ This project demonstrates `KBY-AI`'s `License Plate Recognition Server SDK`, whi
     ```    
    ![image](https://github.com/user-attachments/assets/cb2806e0-93be-4b0a-be9f-713559b89d35)
 
-  - Here are the endpoints to test the `API` through `Postman`:
-
-    Test with an image file: Send a `POST` request to `http://{xx.xx.xx.xx}:8081/alpr`.
-    
-    Test with a `base64-encoded` image: Send a `POST` request to `http://{xx.xx.xx.xx}:8081/alpr_base64`.
-
-### 3. Execute the Gradio demo
-  - Setup `Gradio`
-    Ensure that the necessary dependencies are installed. </br>
-    `Gradio` requires `Python 3.7` or above. </br>
-    Install `Gradio` using `pip` by running the following command:
-    ```bash
-    pip install -r requirements.txt
-    ```
-  - Run the demo with the following command:
-    ```bash
-    cd gradio
-    python demo.py
-    ```
-  - `SDK` can be tested on the following URL: `http://127.0.0.1:9000`
+  - Here are the endpoints to test the `API` through `Postman`:</br>
+    Test with an image file: Send a `POST` request to `http://{xx.xx.xx.xx}:8081/alpr`.</br>
+    Test with a `base64-encoded` image: Send a `POST` request to `http://{xx.xx.xx.xx}:8081/alpr_base64`.</br>
 
 ## About SDK
 
